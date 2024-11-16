@@ -1,0 +1,283 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    height: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #ffffff;
+    background: #000000b9;
+}
+
+/* Fundo de galáxia */
+.background {
+    background-image: url('https://www.solarsystemscope.com/textures/download/8k_stars_milky_way.jpg');
+    background-size: cover;
+    background-position: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0.85;
+}
+
+/* Estilos da barra de navegação */
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: rgb(46, 44, 44);
+    padding: 10px 0;
+    z-index: 100;
+}
+
+nav ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    transition: background-color 0.3s ease;
+}
+
+nav ul li a:hover {
+    background-color: #00bfff;
+    border-radius: 5px;
+}
+
+header {
+    padding: 100px 20px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 1.5em;
+}
+
+.button {
+    background-color: #00bfff;
+    color: #fff;
+    padding: 10px 30px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #008fbf;
+}
+/* Estilos para os botões */
+button, a.button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 10px;
+    font-size: 1.2em;
+    color: #fff;
+    background-color: #00bfff;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover, a.button:hover {
+    background-color: #009acd;
+}
+.social-buttons {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 100;
+}
+
+.button-whatsapp, .button-instagram {
+    background-color: #25D366; /* Cor padrão do WhatsApp */
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 25px;
+    text-decoration: none;
+    text-align: center;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+}
+
+.button-instagram {
+    background-color: #C13584; /* Cor padrão do Instagram */
+}
+
+.button-whatsapp:hover {
+    background-color: #128C7E;
+}
+
+.button-instagram:hover {
+    background-color: #833AB4;
+}
+
+
+/* Centralizar os botões na página */
+#projects .project-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Ajustar a disposição dos botões */
+.project-item a {
+    margin-top: 10px;
+}
+
+
+/* Estilos da seção "Sobre Mim" */
+#about {
+    padding: 60px 20px;
+}
+
+.skills-list {
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.skills-list li {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+/* Estilos para a seção de projetos */
+#projects {
+    padding: 60px 20px;
+}
+
+.project-item {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 600px;
+}
+
+.project-item h3 {
+    font-size: 1.8em;
+}
+
+.project-item p {
+    font-size: 1.2em;
+}
+
+/* Formulário de contato */
+#contact {
+    padding: 60px 20px;
+}
+
+form {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+form label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 1.2em;
+}
+
+form input, form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #00bfff;
+    border: none;
+    color: #fff;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form button:hover {
+    background-color: #008fbf;
+}
+/* Ajustes do seletor de idioma */
+.language-selector select {
+    background-color: #333;
+    color: #fff;
+    border: 1px solid #555;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+.language-selector select:focus {
+    outline: none;
+    border-color: #00bfff;
+}
+
+.language-selector {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+}
+
+/* Cores escuras ajustadas */
+nav ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    transition: background-color 0.3s ease;
+}
+
+nav ul li a:hover {
+    background-color: #005f5f;
+    border-radius: 5px;
+}
+
+/* Seletor responsivo */
+@media (max-width: 768px) {
+    .language-selector {
+        top: 60px;
+        right: 10px;
+    }
+}
+
+
+/* Footer */
+footer {
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    text-align: left;
+}
+footer{
+    text-align: center;
+
+}
