@@ -1,53 +1,4 @@
-const typedText = document.querySelector('#typed-text');
-const aboutText = document.querySelector('#typed-about');
-const textToType = "Edson da Silva Leandro";
-const aboutTextContent = "Meu nome é Edson da Silva Leandro. Sou desenvolvedor com experiência em criação de aplicações web. Estou sempre em busca de novos desafios e oportunidades para aprimorar minhas habilidades. Meu foco principal é o desenvolvimento de software utilizando tecnologias como:";
-let index = 0;
-let aboutIndex = 0;
-
-function typeText() {
-    if (index < textToType.length) {
-        typedText.textContent += textToType.charAt(index);
-        index++;
-        setTimeout(typeText, 150); // Ajusta a velocidade da digitação
-    } else {
-        typeAboutText(); // Inicia a digitação na seção 'Sobre Mim' depois de terminar o título
-    }
-}
-
-function typeAboutText() {
-    if (aboutIndex < aboutTextContent.length) {
-        aboutText.textContent += aboutTextContent.charAt(aboutIndex);
-        aboutIndex++;
-        setTimeout(typeAboutText, 100); // Velocidade ajustada para o texto de "Sobre Mim"
-    }
-}
-
-document.addEventListener("DOMContentLoaded", function() {
-    typeText();
-});
-
-document.addEventListener("DOMContentLoaded", function() {
-    typeText(); // Inicia a digitação automática do nome
-
-    // Adiciona evento para o envio do formulário de contato
-    const contactForm = document.getElementById('contactForm');
-    contactForm.addEventListener('submit', function(event) {
-        event.preventDefault(); // Evita o envio padrão
-
-        const name = document.getElementById('name').value;
-        const email = document.getElementById('email').value;
-        const message = document.getElementById('message').value;
-
-        if (name && email && message) {
-            alert(`Obrigado pela mensagem, ${name}! Entraremos em contato em breve.`);
-            // Limpar campos após envio
-            contactForm.reset();
-        } else {
-            alert('Por favor, preencha todos os campos.');
-        }
-    });
-});
+// Dados para internacionalização
 const languageData = {
     "pt": {
         "about": "Sobre Mim",
@@ -62,15 +13,18 @@ const languageData = {
             "name": "Nome:",
             "email": "Email:",
             "message": "Mensagem:",
-            "button": "Enviar Mensagem"
+            "button": "Enviar Mensagem",
+            "success": "Mensagem enviada com sucesso!",
+            "error": "Erro ao enviar mensagem. Tente novamente."
         },
-        "footer": "&copy; 2024 - Desenvolvido por Edson da Silva Leandro"
+        "downloadCV": "Baixar Currículo",
+        "footer": "Desenvolvido por Edson da Silva Leandro"
     },
     "en": {
         "about": "About Me",
         "projects": "Projects",
         "contact": "Contact",
-        "header" : "Full-Stack Developer | Passionate about Technology",
+        "header": "Full-Stack Developer | Passionate about Technology",
         "aboutMeContent": "My name is Edson da Silva Leandro. I am a developer with experience in building web applications. I am always looking for new challenges and opportunities to improve my skills. My main focus is software development using technologies such as:",
         "project1": "Task manager with the functionality to add and delete tasks. Made with JavaScript.",
         "project2": "A personal blog to share experiences and learnings. Created with HTML, CSS, and JavaScript.",
@@ -79,9 +33,12 @@ const languageData = {
             "name": "Name:",
             "email": "Email:",
             "message": "Message:",
-            "button": "Send Message"
+            "button": "Send Message",
+            "success": "Message sent successfully!",
+            "error": "Error sending message. Please try again."
         },
-        "footer": "&copy; 2024 - Developed by Edson da Silva Leandro"
+        "downloadCV": "Download CV",
+        "footer": "Developed by Edson da Silva Leandro"
     },
     "es": {
         "about": "Sobre Mí",
@@ -96,36 +53,182 @@ const languageData = {
             "name": "Nombre:",
             "email": "Correo Electrónico:",
             "message": "Mensaje:",
-            "button": "Enviar Mensaje"
+            "button": "Enviar Mensaje",
+            "success": "¡Mensaje enviado con éxito!",
+            "error": "Error al enviar el mensaje. Por favor, inténtalo de nuevo."
         },
-        "footer": "&copy; 2024 - Desarrollado por Edson da Silva Leandro"
+        "downloadCV": "Descargar CV",
+        "footer": "Desarrollado por Edson da Silva Leandro"
     }
 };
 
-function changeLanguage() {
-    const selectedLanguage = document.getElementById('language-select').value;
+// Elementos DOM
+const typedText = document.querySelector('#typed-text');
+const aboutText = document.querySelector('#typed-about');
+const currentYear = document.getElementById('current-year');
+const downloadButton = document.querySelector('a[download]');
+const contactForm = document.getElementById('contactForm');
 
-    document.querySelector('#about h2').textContent = languageData[selectedLanguage].about;
-    document.querySelector('#projects h2').textContent = languageData[selectedLanguage].projects;
-    document.querySelector('#contact h2').textContent = languageData[selectedLanguage].contact;
-    document.querySelector('header h1').textContent = languageData[selectedLanguage].header;
+// Configuração inicial
+let currentLanguage = 'pt';
 
-    // Atualizar conteúdo da seção "Sobre Mim"
-    document.getElementById('typed-about').textContent = languageData[selectedLanguage].aboutMeContent;
+// Inicialização quando o DOM estiver pronto
+document.addEventListener('DOMContentLoaded', function() {
+    // Atualiza o ano no footer
+    currentYear.textContent = new Date().getFullYear();
+    
+    // Inicia animações
+    initAnimations();
+    
+    // Configura o formulário
+    setupContactForm();
+    
+    // Configura rolagem suave
+    setupSmoothScrolling();
+    
+    // Configura o seletor de idioma
+    document.getElementById('language-select').addEventListener('change', changeLanguage);
+    
+    // Configura o idioma inicial
+    changeLanguage();
+    
+    // Esconde o loader quando a página carregar
+    handlePageLoad();
+});
 
-    // Atualizar descrição dos projetos
-    const projectDescriptions = document.querySelectorAll('.project-item p');
-    projectDescriptions[0].textContent = languageData[selectedLanguage].project1;
-    projectDescriptions[1].textContent = languageData[selectedLanguage].project2;
-    projectDescriptions[2].textContent = languageData[selectedLanguage].project3;
-
-    // Atualizar formulário de contato
-    document.querySelector('label[for="name"]').textContent = languageData[selectedLanguage].contactForm.name;
-    document.querySelector('label[for="email"]').textContent = languageData[selectedLanguage].contactForm.email;
-    document.querySelector('label[for="message"]').textContent = languageData[selectedLanguage].contactForm.message;
-    document.querySelector('#contactForm button').textContent = languageData[selectedLanguage].contactForm.button;
-
-    // Atualizar rodapé
-    document.querySelector('footer .contact-info p:last-child').innerHTML = languageData[selectedLanguage].footer;
+// Animação de digitação com cursor
+function typeWithCursor(element, text, speed, callback) {
+    let i = 0;
+    element.textContent = '';
+    const cursor = document.createElement('span');
+    cursor.className = 'cursor';
+    cursor.textContent = '|';
+    element.appendChild(cursor);
+    
+    const typing = setInterval(() => {
+        if (i < text.length) {
+            element.insertBefore(document.createTextNode(text.charAt(i)), cursor);
+            i++;
+        } else {
+            clearInterval(typing);
+            cursor.style.display = 'none';
+            if (callback) callback();
+        }
+    }, speed);
 }
 
+// Inicia animações
+function initAnimations() {
+    typeWithCursor(typedText, textToType, 150, () => {
+        typeWithCursor(aboutText, languageData[currentLanguage].aboutMeContent, 50);
+    });
+}
+
+// Mudança de idioma
+function changeLanguage() {
+    currentLanguage = document.getElementById('language-select').value;
+    const langData = languageData[currentLanguage];
+
+    // Atualiza textos estáticos
+    document.querySelector('#about h2').textContent = langData.about;
+    document.querySelector('#projects h2').textContent = langData.projects;
+    document.querySelector('#contact h2').textContent = langData.contact;
+    document.querySelector('header p').textContent = langData.header;
+    if (downloadButton) downloadButton.textContent = langData.downloadCV;
+
+    // Atualiza conteúdo dinâmico
+    aboutText.textContent = '';
+    typeWithCursor(aboutText, langData.aboutMeContent, 50);
+
+    // Atualiza projetos
+    const projectDescriptions = document.querySelectorAll('.project-item p');
+    if (projectDescriptions.length >= 3) {
+        projectDescriptions[0].textContent = langData.project1;
+        projectDescriptions[1].textContent = langData.project2;
+        projectDescriptions[2].textContent = langData.project3;
+    }
+
+    // Atualiza formulário
+    if (contactForm) {
+        document.querySelector('label[for="name"]').textContent = langData.contactForm.name;
+        document.querySelector('label[for="email"]').textContent = langData.contactForm.email;
+        document.querySelector('label[for="message"]').textContent = langData.contactForm.message;
+        document.querySelector('#contactForm button').textContent = langData.contactForm.button;
+    }
+
+    // Atualiza footer
+    document.querySelector('.copyright p').innerHTML = `&copy; ${new Date().getFullYear()} - ${langData.footer}`;
+}
+
+// Configura o formulário de contato
+function setupContactForm() {
+    if (!contactForm) return;
+    
+    // Verifica parâmetros da URL para mensagens de sucesso/erro
+    const urlParams = new URLSearchParams(window.location.search);
+    const success = urlParams.get('success');
+    
+    if (success === 'true') {
+        showMessage('success', languageData[currentLanguage].contactForm.success);
+    } else if (success === 'false') {
+        showMessage('error', languageData[currentLanguage].contactForm.error);
+    }
+}
+
+// Mostra mensagens de sucesso/erro
+function showMessage(type, text) {
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `${type}-message`;
+    messageDiv.textContent = text;
+    
+    contactForm.insertBefore(messageDiv, contactForm.firstChild);
+    
+    // Remove a mensagem após 5 segundos
+    setTimeout(() => {
+        messageDiv.style.opacity = '0';
+        setTimeout(() => {
+            messageDiv.remove();
+        }, 500);
+    }, 5000);
+}
+
+// Configura rolagem suave
+function setupSmoothScrolling() {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+            
+            if (targetElement) {
+                targetElement.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+                
+                // Atualiza a URL sem recarregar a página
+                if (history.pushState) {
+                    history.pushState(null, null, targetId);
+                } else {
+                    window.location.hash = targetId;
+                }
+            }
+        });
+    });
+}
+
+// Esconde o loader quando a página carrega
+function handlePageLoad() {
+    window.addEventListener('load', function() {
+        setTimeout(() => {
+            document.querySelector('.loading').style.opacity = '0';
+            setTimeout(() => {
+                document.querySelector('.loading').style.display = 'none';
+            }, 500);
+        }, 800);
+    });
+}
+
+// Variável global para o texto a ser digitado
+const textToType = "Edson da Silva Leandro";

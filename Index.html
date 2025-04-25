@@ -3,22 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edson da Silva Leandro</title>
+    <meta name="description" content="Portfólio profissional de Edson da Silva Leandro - Desenvolvedor Full Stack">
+    <meta name="keywords" content="desenvolvedor, portfolio, fullstack, JavaScript, React, Node">
+    <title>Edson da Silva Leandro | Portfólio</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
 </head>
 
-
 <body>
+    <div class="loading">
+        <div class="spinner"></div>
+    </div>
+
     <div class="background"></div>
+    
     <nav>
         <ul>
-            <h5><li><a href="#about">Sobre Mim</a></li>
-            <h5><li><a href="#projects">Projetos</a></li>
-            <h5><li><a href="#contact">Contato</a></li>
+            <li><a href="#about">Sobre Mim</a></li>
+            <li><a href="#projects">Projetos</a></li>
+            <li><a href="#contact">Contato</a></li>
         </ul>
-
 
         <div class="language-selector">
             <select id="language-select" onchange="changeLanguage()">
@@ -29,18 +34,15 @@
         </div>
     </nav>
     
-
     <header>
         <h1 id="typed-text"></h1>
-        <p>Desenvolvedor Full-Stack | Apaixonado por Tecnologia</p>
-
-
+        <p class="subtitle">Desenvolvedor Full-Stack | Apaixonado por Tecnologia</p>
         <a class="button" href="curriculo.pdf" download>Baixar Currículo</a>
     </header>
 
     <section id="about">
         <h2>Sobre Mim</h2>
-        <p id="typed-about"></p>
+        <p id="typed-about" class="large-text"></p>
         <ul class="skills-list">
             <li>React</li>
             <li>Node.js</li>
@@ -52,71 +54,93 @@
         </ul>
     </section>
 
-    <div class="sun-container">
-        <div class="sun"></div>
-    </div>
-
     <section id="projects">
         <h2>Projetos</h2>
     
         <div class="project-item">
             <h3>Projeto 1: Aplicativo de Tarefas</h3>
             <p>Gerenciador de tarefas com a funcionalidade de adicionar e excluir tarefas. Feito com JavaScript.</p>
-            <a href="https://github.com/EdsonDEvs/Aplicativo-de-Tarefas" class="button" target="_blank">Ver Código</a>
+            <div class="project-links">
+                <a href="https://github.com/EdsonDEvs/Aplicativo-de-Tarefas" class="button" target="_blank">Ver Código</a>
+                <a href="#" class="button demo-button" target="_blank">Ver Demo</a>
+            </div>
         </div>
     
         <div class="project-item">
             <h3>Projeto 2: Blog Pessoal</h3>
             <p>Um blog pessoal para compartilhar experiências e aprendizados. Criado com HTML, CSS e JavaScript.</p>
-            <a href="https://github.com/EdsonDEvs/Blog-Pessoal" class="button" target="_blank">Ver Código</a>
+            <div class="project-links">
+                <a href="https://github.com/EdsonDEvs/Blog-Pessoal" class="button" target="_blank">Ver Código</a>
+                <a href="#" class="button demo-button" target="_blank">Ver Demo</a>
+            </div>
         </div>
     
         <div class="project-item">
             <h3>Projeto 3: API de Clima</h3>
             <p>API que fornece informações climáticas em tempo real usando OpenWeather API. Desenvolvido com JavaScript e Fetch API.</p>
-            <a href="https://github.com/EdsonDEvs/API-de-Clima" class="button" target="_blank">Ver Código</a>
+            <div class="project-links">
+                <a href="https://github.com/EdsonDEvs/API-de-Clima" class="button" target="_blank">Ver Código</a>
+                <a href="#" class="button demo-button" target="_blank">Ver Demo</a>
+            </div>
         </div>
     </section>
-    
 
     <section id="contact">
         <h2>Contato</h2>
-        <form id="contactForm">
-            <label for="name">Nome:</label>
-            <input type="text" id="name" name="name" required>
+        <form 
+            id="contactForm" 
+            name="contact" 
+            method="POST" 
+            netlify
+            netlify-honeypot="bot-field"
+            data-netlify-recaptcha="true"
+        >
+            <input type="hidden" name="form-name" value="contact">
+            <p class="hidden">
+                <label>Não preencha este campo: <input name="bot-field"></label>
+            </p>
             
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
+            <div class="form-group">
+                <label for="name">Nome:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
             
-            <label for="message">Mensagem:</label>
-            <textarea id="message" name="message" rows="4" required></textarea>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="message">Mensagem:</label>
+                <textarea id="message" name="message" rows="6" required></textarea>
+            </div>
+            
+            <div data-netlify-recaptcha="true"></div>
             
             <button type="submit">Enviar Mensagem</button>
         </form>
     </section>
-    
 
     <footer>
         <div class="contact-info">
-            <p>Email: <a href="mailto:edson.leandro@dev.com">euedsonleandro@gmail.com</a></p>
-            <p>GitHub: <a href="https://github.com/EdsonDEvs" target="_blank">Meu GitHub</a></p>
+            <p>Email: <a href="mailto:euedsonleandro@gmail.com">euedsonleandro@gmail.com</a></p>
+            <p>GitHub: <a href="https://github.com/EdsonDEvs" target="_blank">EdsonDEvs</a></p>
+            <p>LinkedIn: <a href="#" target="_blank">Edson Leandro</a></p>
         </div>
-        <div class="rodapé">
-            <h6><p>&copy; 2024 - Desenvolvido por Edson da Silva Leandro</p>
-        </div>
-    </footer>
-    <section>
+        
         <div class="social-buttons">
             <a href="https://wa.me/+5531972242378" target="_blank" class="button-whatsapp">
-                <i class="fab fa-whatsapp"></i>
+                <i class="fab fa-whatsapp"></i> WhatsApp
             </a>
-            <a href="https://www.instagram.com/edson_leandro_silva/profilecard/?igsh=YWdjbG15MHAzeXI= " target="_blank" class="button-instagram">
-                <i class="fab fa-instagram"></i> 
+            <a href="https://www.instagram.com/edson_leandro_silva/" target="_blank" class="button-instagram">
+                <i class="fab fa-instagram"></i> Instagram
             </a>
         </div>
         
-        
-    </section>
+        <div class="copyright">
+            <p>&copy; <span id="current-year">2024</span> - Desenvolvido por Edson da Silva Leandro</p>
+        </div>
+    </footer>
 
     <script src="script.js"></script>
 </body>
