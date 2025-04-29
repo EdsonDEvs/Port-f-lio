@@ -693,3 +693,17 @@ footer {
         padding: 20px;
     }
 }
+.hidden {
+    display: none;
+}
+#formFeedback {
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 5px;
+    display: none;
+}
+
+.success {
+    background: #4CAF50;
+    color: white;
+}

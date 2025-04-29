@@ -10,7 +10,7 @@ const languageData = {
         "project2": "Um blog pessoal para compartilhar experiências e aprendizados. Criado com HTML, CSS e JavaScript.",
         "project3": "API que fornece informações climáticas em tempo real usando OpenWeather API. Desenvolvido com JavaScript e Fetch API.",
         "contactForm": {
-            "name": "Nome:",
+            "name": "Nome completo:",
             "email": "Email:",
             "message": "Mensagem:",
             "button": "Enviar Mensagem",
@@ -71,7 +71,28 @@ const contactForm = document.getElementById('contactForm');
 
 // Configuração inicial
 let currentLanguage = 'pt';
-
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const form = this;
+    const feedback = document.createElement('div');
+    feedback.id = 'formFeedback';
+    form.appendChild(feedback);
+    
+    fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form)
+    })
+    .then(response => {
+        feedback.textContent = 'Mensagem enviada com sucesso!';
+        feedback.classList.add('success');
+        feedback.style.display = 'block';
+        form.reset();
+    })
+    .catch(error => {
+        feedback.textContent = 'Erro ao enviar. Tente novamente.';
+        feedback.style.display = 'block';
+    });
+});
 // Inicialização quando o DOM estiver pronto
 document.addEventListener('DOMContentLoaded', function() {
     // Atualiza o ano no footer
