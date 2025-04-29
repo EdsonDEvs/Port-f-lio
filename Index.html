@@ -17,14 +17,21 @@
     </div>
 
     <div class="background"></div>
-    
-    <nav>
-        <ul>
-            <li><a href="#about">Sobre Mim</a></li>
-            <li><a href="#projects">Projetos</a></li>
-            <li><a href="#contact">Contato</a></li>
-        </ul>
+ <header>   
+    <div class="digital-overlay"></div>
+    <div class="digital-content">
+        <h1 id="typed-text" class="digital-title"></h1>
+        <p class="digital-subtitle">$ <span class="terminal-text">Desenvolvedor Full-Stack | Apaixonado por Tecnologia</span></p>
+        <div class="digital-buttons">
+            <a class="digital-button" href="#about">Sobre_Mim</a>
+            <a class="digital-button" href="#projects">Projetos</a>
+            <a class="digital-button" href="#contact">Contato</a>
+            <a class="digital-button download-btn" href="curriculo.pdf" download>Baixar_CV</a>
+        </div>
+    </div>
+</header> 
 
+    <nav class="navbar">
         <div class="language-selector">
             <select id="language-select" onchange="changeLanguage()">
                 <option value="pt" selected>Português</option>
@@ -33,12 +40,6 @@
             </select>
         </div>
     </nav>
-    
-    <header>
-        <h1 id="typed-text"></h1>
-        <p class="subtitle">Desenvolvedor Full-Stack | Apaixonado por Tecnologia</p>
-        <a class="button" href="curriculo.pdf" download>Baixar Currículo</a>
-    </header>
 
     <section id="about">
         <h2>Sobre Mim</h2>
@@ -95,10 +96,7 @@
             netlify-honeypot="bot-field"
             data-netlify-recaptcha="true"
         >
-            <input type="hidden" name="form-name" value="contact">
-            <p class="hidden">
-                <label>Não preencha este campo: <input name="bot-field"></label>
-            </p>
+
             
             <div class="form-group">
                 <label for="name">Nome:</label>
@@ -125,7 +123,7 @@
         <div class="contact-info">
             <p>Email: <a href="mailto:euedsonleandro@gmail.com">euedsonleandro@gmail.com</a></p>
             <p>GitHub: <a href="https://github.com/EdsonDEvs" target="_blank">EdsonDEvs</a></p>
-            <p>LinkedIn: <a href="#" target="_blank">Edson Leandro</a></p>
+            <p>LinkedIn: <a href="https://www.linkedin.com/in/edson-devs/" target="_blank">Edson Leandro</a></p>
         </div>
         
         <div class="social-buttons">

@@ -1,8 +1,8 @@
 /* Reset básico e variáveis */
 :root {
-    --primary-color: #00bfff;
-    --primary-dark: #008fbf;
-    --text-color: #ffffff;
+    --primary-color: #0eff42;
+    --primary-dark: #00ff73;
+    --text-color: #fffcfc;
     --bg-color: #000000b9;
     --card-bg: rgba(255, 255, 255, 0.1);
     --nav-bg: rgb(46, 44, 44);
@@ -50,7 +50,7 @@ body, html {
     to { transform: rotate(360deg); }
 }
 
-/* Fundo de galáxia */
+/* Fundo binário */
 .background {
     background-image: url('https://img.freepik.com/vetores-gratis/numeros-de-queda-digitais-do-codigo-binario-do-estilo-da-matriz-fundo-azul_1017-37387.jpg?t=st=1745588711~exp=1745592311~hmac=74f0cff85f82b0d0e4ca3e9d043aa418c75a73090d4ac4db6a3e28e3d2dbf8a9&w=996');
     background-size: cover;
@@ -63,17 +63,113 @@ body, html {
     z-index: -1;
     opacity: 0.85;
 }
-
-/* Barra de navegação */
-nav {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    background-color: var(--nav-bg);
-    padding: 20px 0;
-    z-index: 100;
-    box-shadow: 0 2px 10px rgba(0, 81, 255, 0.3);
+/* Efeito de transição suave */
+html {
+    scroll-behavior: smooth;
 }
+.digital-header {
+    position: relative;
+    height: 100vh;
+    background: #000;
+    color: rgb(0, 204, 255);
+    font-family: 'Courier New', monospace;
+    overflow: hidden;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.digital-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        linear-gradient(rgba(0, 0, 0, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 0, 0, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+    opacity: 0.5;
+}
+
+.digital-content {
+    position: relative;
+    z-index: 2;
+    width: 90%;
+    max-width: 800px;
+}
+
+.digital-title {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    text-shadow: var(--primary-color);
+    letter-spacing: 2px;
+    
+}
+
+.digital-subtitle {
+    font-size: 1.5rem;
+    margin-bottom: 40px;
+    color: var(--primary-color)
+}
+
+.terminal-text {
+    animation: blink 0.7s infinite alternate;
+}
+
+.digital-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+.digital-button {
+    background: transparent;
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+    text-align: center;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 12px 25px;
+    font-family: 'Courier New', monospace;
+    font-size: 1.1rem;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.digital-button:hover {
+    background: rgba(0, 255, 0, 0.1);
+    box-shadow: 0 0 10px rgb(0, 255, 255);
+}
+
+.download-btn {
+    background: rgba(0, 255, 0, 0.2);
+}
+
+@keyframes blink {
+    0% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+/* Efeito de digitação */
+.cursor {
+    display: inline-block;
+    width: 10px;
+    height: 1.2em;
+    background: rgba(0, 255, 0, 0.596);
+    vertical-align: middle;
+    margin-left: 5px;
+    animation: blink 0.7s infinite;
+}
+/* Barra de navegação */
 
 nav ul {
     list-style-type: none;
@@ -135,15 +231,15 @@ h1 {
 .button:hover {
     background-color: var(--primary-dark);
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 191, 255, 0.3);
+    box-shadow: 0 5px 15px rgba(0, 255, 42, 0.3);
 }
 
 .demo-button {
-    background-color: #4CAF50;
+    background-color: #00ccff;
 }
 
 .demo-button:hover {
-    background-color: #3e8e41;
+    background-color: #ff00117c;
 }
 
 /* Seções */
@@ -187,8 +283,133 @@ section h2::after {
 #typed-about, 
 #typed-about span {
     font-size: 1.3em !important;
+    color: var(--primary-color);
+    animation: typing 2s steps(30, end), blink-caret 0.75s step-end infinite;
+    text-align: center;
+    margin: 0 auto;
+    padding: 0 20px;
+    max-width: 800px;
+    line-height: 1.5;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
+@media (max-width: 767px) {
+    #typed-about, 
+    #typed-about span {
+        font-size: 1.2em !important;
+    }
+    /* Ajustes para dispositivos móveis */
+    body {
+        font-size: 0.9em;
+    }
+    header {
+        padding: 100px 20px 60px;
+    }
+    h1 {
+        font-size: 2.5em;
+    }
+    .subtitle {
+        font-size: 1.3em;
+    }
+    nav ul {
+        flex-direction: column;
+        gap: 10px;
+        padding: 10px 0;
+    }
+    
 
+}
+    section {
+        padding: 80px 20px;
+        box-sizing: border-box;
+    }
+
+    #about {
+        text-align: center;
+    }
+    #typed.about.large-text {
+        font-size: 1.1em;
+        text-align: left;
+        padding: 0 10px;
+    }
+    .skills-list {
+        justify-content: center;
+        padding: 0 15px;
+    }
+    /* Projetos - Melhor disposição */
+    .project-item {
+        padding: 25px 15px;
+        margin: 25px auto;
+        width: 95%;
+    }
+    
+    .project-item h3 {
+        font-size: 1.4rem;
+    }
+    
+    .project-item p {
+        font-size: 1rem;
+        text-align: left;
+    }
+    
+    .project-links {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .project-links .button {
+        width: 100%;
+    }
+    
+    /* Contato - Formulário mais compacto */
+    #contact form {
+        padding: 20px 15px;
+        width: 95%;
+    }
+    
+    form input, form textarea {
+        padding: 12px;
+    }
+    
+    /* Header - Ajuste de tamanho */
+    header {
+        padding: 120px 20px 60px;
+    }
+    
+    h1 {
+        font-size: 2rem;
+    }
+    
+    .subtitle {
+        font-size: 1.1rem;
+    }
+    
+    /* Navegação - Menu mais compacto */
+    nav ul {
+        flex-wrap: wrap;
+        gap: 10px;
+        padding: 10px 5px;
+    }
+    
+    nav ul li a {
+        padding: 8px 12px;
+        font-size: 1rem;
+    }
+    
+    /* Ajuste do seletor de idioma */
+    .language-selector {
+        position: static;
+        margin: 0px auto;
+        display: flex;
+        justify-content: center;
+        padding: 10px 0;
+    }
+    
+    .language-selector select {
+        padding: 6px 10px;
+    }
 .skills-list li {
     background-color: var(--card-bg);
     padding: 12px 25px;
