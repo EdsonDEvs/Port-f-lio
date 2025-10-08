@@ -147,10 +147,10 @@ function createInteractiveParticles() {
             position: absolute;
             width: 2px;
             height: 2px;
-            background: #00ff73;
+            background: #4ade80;
             border-radius: 50%;
             pointer-events: none;
-            opacity: 0.6;
+            opacity: 0.4;
             animation: particleFloat ${5 + Math.random() * 10}s linear infinite;
             left: ${Math.random() * 100}%;
             top: ${Math.random() * 100}%;
@@ -206,14 +206,14 @@ function animateFloatingElements() {
         // Efeito de hover
         element.addEventListener('mouseenter', function() {
             this.style.transform = 'scale(1.2) rotate(180deg)';
-            this.style.color = '#00ff73';
-            this.style.textShadow = '0 0 20px #00ff73';
+            this.style.color = '#4ade80';
+            this.style.textShadow = '0 0 16px rgba(74, 222, 128, 0.6)';
         });
         
         element.addEventListener('mouseleave', function() {
             this.style.transform = '';
-            this.style.color = '#00ccff';
-            this.style.textShadow = '0 0 15px #00ccff';
+            this.style.color = '#60a5fa';
+            this.style.textShadow = '0 0 12px rgba(96, 165, 250, 0.4)';
         });
     });
 }
@@ -239,7 +239,7 @@ style.textContent = `
     }
     
     .interactive-particle {
-        box-shadow: 0 0 10px #00ff73;
+        box-shadow: 0 0 8px rgba(74, 222, 128, 0.4);
     }
 `;
 document.head.appendChild(style);
@@ -269,8 +269,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Animação de digitação com cursor
 function typeWithCursor(element, text, speed, callback) {
+    // Limpar qualquer animação anterior
+    element.innerHTML = '';
     let i = 0;
-    element.textContent = '';
+    
     const cursor = document.createElement('span');
     cursor.className = 'cursor';
     cursor.textContent = '|';
@@ -278,11 +280,20 @@ function typeWithCursor(element, text, speed, callback) {
     
     const typing = setInterval(() => {
         if (i < text.length) {
-            element.insertBefore(document.createTextNode(text.charAt(i)), cursor);
+            // Verificar se o cursor ainda existe no DOM
+            if (cursor && cursor.parentNode) {
+                element.insertBefore(document.createTextNode(text.charAt(i)), cursor);
+            } else {
+                // Se o cursor não existir mais, apenas adicionar o texto
+                element.appendChild(document.createTextNode(text.charAt(i)));
+            }
             i++;
         } else {
             clearInterval(typing);
-            cursor.style.display = 'none';
+            // Verificar se o cursor ainda existe antes de removê-lo
+            if (cursor && cursor.parentNode) {
+                cursor.style.display = 'none';
+            }
             if (callback) callback();
         }
     }, speed);

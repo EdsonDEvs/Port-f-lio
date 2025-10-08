@@ -1,11 +1,17 @@
 /* Reset básico e variáveis */
 :root {
-    --primary-color: #0eff42;
-    --primary-dark: #00ff73;
-    --text-color: #fffcfc;
-    --bg-color: #000000b9;
-    --card-bg: rgba(255, 255, 255, 0.1);
-    --nav-bg: rgb(46, 44, 44);
+    --primary-color: #4ade80;
+    --primary-dark: #22c55e;
+    --secondary-color: #60a5fa;
+    --accent-color: #f472b6;
+    --text-color: #f8fafc;
+    --text-muted: #cbd5e1;
+    --bg-color: #0f172a;
+    --card-bg: rgba(30, 41, 59, 0.8);
+    --nav-bg: rgba(15, 23, 42, 0.95);
+    --border-color: #475569;
+    --gradient-start: #1e293b;
+    --gradient-end: #334155;
 }
 
 * {
@@ -52,7 +58,7 @@ body, html {
 
 /* Fundo animado de programação */
 .background {
-    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
     position: fixed;
     top: 0;
     left: 0;
@@ -74,13 +80,13 @@ body, html {
 
 .code-line {
     position: absolute;
-    color: #00ff73;
+    color: #4ade80;
     font-family: 'Courier New', monospace;
     font-size: 14px;
-    opacity: 0.7;
+    opacity: 0.6;
     white-space: nowrap;
     animation: codeFall linear infinite;
-    text-shadow: 0 0 10px #00ff73;
+    text-shadow: 0 0 8px rgba(74, 222, 128, 0.5);
 }
 
 .code-line:nth-child(1) { left: 5%; animation-duration: 8s; animation-delay: 0s; }
@@ -123,13 +129,13 @@ body, html {
 
 .floating-bracket, .floating-symbol {
     position: absolute;
-    color: #00ccff;
+    color: #60a5fa;
     font-family: 'Courier New', monospace;
     font-size: 24px;
     font-weight: bold;
-    opacity: 0.6;
+    opacity: 0.5;
     animation: floatAround 15s linear infinite;
-    text-shadow: 0 0 15px #00ccff;
+    text-shadow: 0 0 12px rgba(96, 165, 250, 0.4);
 }
 
 .floating-bracket:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
@@ -168,10 +174,10 @@ body, html {
 
 .binary-column {
     position: absolute;
-    color: #00ff73;
+    color: #4ade80;
     font-family: 'Courier New', monospace;
     font-size: 12px;
-    opacity: 0.3;
+    opacity: 0.2;
     animation: binaryFall linear infinite;
     writing-mode: vertical-rl;
     text-orientation: mixed;
@@ -521,6 +527,8 @@ section h2::after {
     
     .project-links .button {
         width: 100%;
+        padding: 14px 20px;
+        font-size: 1.1em;
     }
     
     /* Contato - Formulário mais compacto */
@@ -618,7 +626,7 @@ section h2::after {
 .tech-stack {
     margin: 25px 0;
     padding: 20px;
-    background: rgba(0, 255, 115, 0.05);
+    background: rgba(74, 222, 128, 0.05);
     border-radius: 8px;
     border-left: 4px solid var(--primary-color);
 }
@@ -654,34 +662,34 @@ section h2::after {
 
 .tech-tag {
     display: inline-block;
-    background: linear-gradient(135deg, var(--primary-color), #00cc66);
-    color: #000;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    color: #1e293b;
     padding: 6px 12px;
     border-radius: 20px;
     font-size: 0.85em;
     font-weight: 600;
     margin: 2px;
     transition: all 0.3s ease;
-    box-shadow: 0 2px 4px rgba(0, 255, 115, 0.3);
+    box-shadow: 0 2px 8px rgba(74, 222, 128, 0.2);
 }
 
 .tech-tag:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 255, 115, 0.4);
-    background: linear-gradient(135deg, #00ff73, var(--primary-color));
+    box-shadow: 0 4px 12px rgba(74, 222, 128, 0.3);
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
 }
 
 /* Project Summary Styling */
 .project-summary {
     margin: 25px 0;
     padding: 20px;
-    background: rgba(0, 191, 255, 0.05);
+    background: rgba(96, 165, 250, 0.05);
     border-radius: 8px;
-    border-left: 4px solid #00ccff;
+    border-left: 4px solid var(--secondary-color);
 }
 
 .project-summary h4 {
-    color: #00ccff;
+    color: var(--secondary-color);
     margin-bottom: 15px;
     font-size: 1.3em;
     display: flex;
@@ -703,6 +711,49 @@ section h2::after {
     justify-content: center;
     flex-wrap: wrap;
     margin-top: 25px;
+}
+
+/* Estilos dos botões */
+.button {
+    display: inline-block;
+    padding: 12px 24px;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    color: #1e293b;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1em;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(74, 222, 128, 0.3);
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    min-width: 120px;
+}
+
+.button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(74, 222, 128, 0.4);
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
+    color: #0f172a;
+}
+
+.button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(74, 222, 128, 0.3);
+}
+
+/* Botão de demo com cor diferente */
+.demo-button {
+    background: linear-gradient(135deg, var(--secondary-color), #3b82f6);
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(96, 165, 250, 0.3);
+}
+
+.demo-button:hover {
+    background: linear-gradient(135deg, #3b82f6, var(--secondary-color));
+    box-shadow: 0 6px 20px rgba(96, 165, 250, 0.4);
+    color: #ffffff;
 }
 
 /* Contato */
@@ -920,6 +971,8 @@ footer {
 
     .project-links .button {
         width: 100%;
+        padding: 14px 20px;
+        font-size: 1.1em;
     }
     
     /* Fundo animado - Ajustar para mobile */
