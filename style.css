@@ -360,33 +360,7 @@ h1 {
     opacity: 0.9;
 }
 
-/* Botões */
-.button {
-    background-color: var(--primary-color);
-    color: #fff;
-    padding: 12px 30px;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: all 0.3s ease;
-    font-size: 1.1em;
-    border: none;
-    cursor: pointer;
-    display: inline-block;
-}
-
-.button:hover {
-    background-color: var(--primary-dark);
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 255, 42, 0.3);
-}
-
-.demo-button {
-    background-color: #00ccff;
-}
-
-.demo-button:hover {
-    background-color: #ff00117c;
-}
+/* Botões - Estilos removidos (definidos mais abaixo) */
 
 /* Seções */
 section {
@@ -425,66 +399,48 @@ section h2::after {
     gap: 15px;
     margin-top: 40px;
 }
-/* Aumenta apenas o texto que está sendo digitado */
-#typed-about, 
-#typed-about span {
-    font-size: 1.3em !important;
-    color: var(--primary-color);
-    animation: typing 2s steps(30, end), blink-caret 0.75s step-end infinite;
+/* Texto da seção about */
+#typed-about {
+    font-size: 1.2em;
+    color: var(--text-color);
     text-align: center;
-    margin: 0 auto;
+    margin: 0 auto 40px;
     padding: 0 20px;
     max-width: 800px;
-    line-height: 1.5;
-    font-family: 'Courier New', monospace;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 2px;
+    line-height: 1.6;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
+
+/* Cursor piscante para efeito de digitação */
+#typed-about.typing::after {
+    content: '|';
+    color: var(--primary-color);
+    animation: blink 1s infinite;
+    margin-left: 2px;
+}
+/* Responsividade para mobile */
 @media (max-width: 767px) {
-    #typed-about, 
-    #typed-about span {
-        font-size: 1.2em !important;
-    }
-    /* Ajustes para dispositivos móveis */
-    body {
-        font-size: 0.9em;
-    }
-    header {
-        padding: 100px 20px 60px;
-    }
-    h1 {
-        font-size: 2.5em;
-    }
-    .subtitle {
-        font-size: 1.3em;
-    }
-    nav ul {
-        flex-direction: column;
-        gap: 10px;
-        padding: 10px 0;
+    #typed-about {
+        font-size: 1.1em;
+        padding: 0 15px;
     }
     
-
-}
-    section {
-        padding: 80px 20px;
-        box-sizing: border-box;
-    }
-
-    #about {
-        text-align: center;
-    }
-    #typed.about.large-text {
-        font-size: 1.1em;
-        text-align: left;
-        padding: 0 10px;
-    }
     .skills-list {
         justify-content: center;
         padding: 0 15px;
     }
-    /* Projetos - Melhor disposição */
+    
+    section {
+        padding: 80px 20px;
+        box-sizing: border-box;
+    }
+}
+
+/* Estilos para projetos em mobile */
+@media (max-width: 768px) {
     .project-item {
         padding: 25px 15px;
         margin: 25px auto;
@@ -578,6 +534,9 @@ section h2::after {
     .language-selector select {
         padding: 6px 10px;
     }
+}
+
+/* Estilos das skills */
 .skills-list li {
     background-color: var(--card-bg);
     padding: 12px 25px;
@@ -587,7 +546,7 @@ section h2::after {
 
 .skills-list li:hover {
     transform: translateY(-5px);
-    background-color: rgba(0, 191, 255, 0.2);
+    background-color: rgba(96, 165, 250, 0.2);
 }
 
 /* Projetos */

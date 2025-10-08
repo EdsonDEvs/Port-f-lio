@@ -96,6 +96,9 @@ const currentYear = document.getElementById('current-year');
 const downloadButton = document.querySelector('a[download]');
 const contactForm = document.getElementById('contactForm');
 
+// Texto para digitação
+const textToType = 'Edson da Silva Leandro';
+
 // Configuração inicial
 let currentLanguage = 'pt';
 document.getElementById('contactForm').addEventListener('submit', function(e) {
@@ -270,30 +273,17 @@ document.addEventListener('DOMContentLoaded', function() {
 // Animação de digitação com cursor
 function typeWithCursor(element, text, speed, callback) {
     // Limpar qualquer animação anterior
-    element.innerHTML = '';
+    element.textContent = '';
+    element.classList.add('typing');
     let i = 0;
-    
-    const cursor = document.createElement('span');
-    cursor.className = 'cursor';
-    cursor.textContent = '|';
-    element.appendChild(cursor);
     
     const typing = setInterval(() => {
         if (i < text.length) {
-            // Verificar se o cursor ainda existe no DOM
-            if (cursor && cursor.parentNode) {
-                element.insertBefore(document.createTextNode(text.charAt(i)), cursor);
-            } else {
-                // Se o cursor não existir mais, apenas adicionar o texto
-                element.appendChild(document.createTextNode(text.charAt(i)));
-            }
+            element.textContent = text.substring(0, i + 1);
             i++;
         } else {
             clearInterval(typing);
-            // Verificar se o cursor ainda existe antes de removê-lo
-            if (cursor && cursor.parentNode) {
-                cursor.style.display = 'none';
-            }
+            element.classList.remove('typing');
             if (callback) callback();
         }
     }, speed);
@@ -301,9 +291,14 @@ function typeWithCursor(element, text, speed, callback) {
 
 // Inicia animações
 function initAnimations() {
-    typeWithCursor(typedText, textToType, 150, () => {
-        typeWithCursor(aboutText, languageData[currentLanguage].aboutMeContent, 50);
-    });
+    if (typedText) {
+        typeWithCursor(typedText, textToType, 150, () => {
+            if (aboutText) {
+                aboutText.innerHTML = '';
+                typeWithCursor(aboutText, languageData[currentLanguage].aboutMeContent, 30);
+            }
+        });
+    }
 }
 
 // Mudança de idioma
@@ -318,9 +313,11 @@ function changeLanguage() {
     document.querySelector('header p .terminal-text').textContent = langData.header;
     if (downloadButton) downloadButton.textContent = langData.downloadCV;
 
-    // Atualiza conteúdo dinâmico
-    aboutText.textContent = '';
-    typeWithCursor(aboutText, langData.aboutMeContent, 50);
+    // Atualiza conteúdo dinâmico com efeito de digitação
+    if (aboutText) {
+        aboutText.innerHTML = '';
+        typeWithCursor(aboutText, langData.aboutMeContent, 30);
+    }
 
     // Atualiza projetos
     const projectDescriptions = document.querySelectorAll('.project-item p');
@@ -430,5 +427,4 @@ function handlePageLoad() {
     });
 }
 
-// Variável global para o texto a ser digitado
-const textToType = "Edson da Silva Leandro";
+// Variável global removida (já definida acima)
