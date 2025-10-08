@@ -119,7 +119,130 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
         feedback.textContent = 'Erro ao enviar. Tente novamente.';
         feedback.style.display = 'block';
     });
+    
+    // Inicializar efeitos do fundo animado
+    initAnimatedBackground();
 });
+
+// Efeitos do fundo animado
+function initAnimatedBackground() {
+    // Criar partículas interativas
+    createInteractiveParticles();
+    
+    // Efeito de mouse no fundo
+    addMouseEffect();
+    
+    // Animar elementos flutuantes com interação
+    animateFloatingElements();
+}
+
+// Criar partículas interativas
+function createInteractiveParticles() {
+    const background = document.querySelector('.background');
+    
+    for (let i = 0; i < 20; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'interactive-particle';
+        particle.style.cssText = `
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #00ff73;
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 0.6;
+            animation: particleFloat ${5 + Math.random() * 10}s linear infinite;
+            left: ${Math.random() * 100}%;
+            top: ${Math.random() * 100}%;
+            animation-delay: ${Math.random() * 5}s;
+        `;
+        background.appendChild(particle);
+    }
+}
+
+// Adicionar efeito de mouse
+function addMouseEffect() {
+    let mouseX = 0;
+    let mouseY = 0;
+    
+    document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        
+        // Mover elementos flutuantes em direção ao mouse
+        const floatingElements = document.querySelectorAll('.floating-bracket, .floating-symbol');
+        floatingElements.forEach((element, index) => {
+            const rect = element.getBoundingClientRect();
+            const elementX = rect.left + rect.width / 2;
+            const elementY = rect.top + rect.height / 2;
+            
+            const deltaX = mouseX - elementX;
+            const deltaY = mouseY - elementY;
+            const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+            
+            if (distance < 150) {
+                const force = (150 - distance) / 150;
+                const moveX = (deltaX / distance) * force * 10;
+                const moveY = (deltaY / distance) * force * 10;
+                
+                element.style.transform = `translate(${moveX}px, ${moveY}px) rotate(${force * 45}deg)`;
+            }
+        });
+    });
+}
+
+// Animar elementos flutuantes
+function animateFloatingElements() {
+    const floatingElements = document.querySelectorAll('.floating-bracket, .floating-symbol');
+    
+    floatingElements.forEach((element, index) => {
+        // Adicionar animação aleatória
+        const randomDelay = Math.random() * 5;
+        const randomDuration = 10 + Math.random() * 10;
+        
+        element.style.animationDelay = `${randomDelay}s`;
+        element.style.animationDuration = `${randomDuration}s`;
+        
+        // Efeito de hover
+        element.addEventListener('mouseenter', function() {
+            this.style.transform = 'scale(1.2) rotate(180deg)';
+            this.style.color = '#00ff73';
+            this.style.textShadow = '0 0 20px #00ff73';
+        });
+        
+        element.addEventListener('mouseleave', function() {
+            this.style.transform = '';
+            this.style.color = '#00ccff';
+            this.style.textShadow = '0 0 15px #00ccff';
+        });
+    });
+}
+
+// Adicionar CSS para partículas interativas
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes particleFloat {
+        0% {
+            transform: translateY(100vh) translateX(0);
+            opacity: 0;
+        }
+        10% {
+            opacity: 0.6;
+        }
+        90% {
+            opacity: 0.6;
+        }
+        100% {
+            transform: translateY(-100px) translateX(${Math.random() * 200 - 100}px);
+            opacity: 0;
+        }
+    }
+    
+    .interactive-particle {
+        box-shadow: 0 0 10px #00ff73;
+    }
+`;
+document.head.appendChild(style);
 // Inicialização quando o DOM estiver pronto
 document.addEventListener('DOMContentLoaded', function() {
     // Atualiza o ano no footer
