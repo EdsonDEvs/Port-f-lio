@@ -9,7 +9,6 @@ const languageData = {
         "project1": "Sistema completo para gestão de assistência técnica de informática com CRUD de serviços, ordens de serviço, controle financeiro, chamados/tickets e geração automática de PDFs. Desenvolvido com Node.js, React, SQLite e Firebase.",
         "project2": "Sistema financeiro completo com dashboard interativo, controle de receitas/despesas, categorização automática, relatórios detalhados e autenticação segura. Desenvolvido com TypeScript, React, Node.js e PostgreSQL.",
         "project3": "Pokedex interativa e responsiva consumindo a PokeAPI para exibir informações detalhadas dos Pokémon. Inclui sistema de busca avançada, filtros por tipo, geração e estatísticas, com design moderno inspirado no anime.",
-        "project4": "Aplicativo de relacionamentos moderno com sistema de matches inteligente, chat em tempo real, perfis personalizados e sistema de geolocalização. Desenvolvido com foco na experiência do usuário e interface intuitiva.",
         "contactForm": {
             "name": "Nome completo:",
             "email": "Email:",
@@ -39,7 +38,6 @@ const languageData = {
         "project1": "Complete IT technical support management system with CRUD services, work orders, financial control, tickets/support calls and automatic PDF generation. Developed with Node.js, React, SQLite and Firebase.",
         "project2": "Complete financial system with interactive dashboard, revenue/expense control, automatic categorization, detailed reports and secure authentication. Developed with TypeScript, React, Node.js and PostgreSQL.",
         "project3": "Interactive and responsive Pokedex consuming PokeAPI to display detailed Pokémon information. Includes advanced search system, filters by type, generation and statistics, with modern anime-inspired design.",
-        "project4": "Modern dating application with intelligent matching system, real-time chat, personalized profiles and geolocation system. Developed with focus on user experience and intuitive interface.",
         "contactForm": {
             "name": "Name:",
             "email": "Email:",
@@ -69,7 +67,6 @@ const languageData = {
         "project1": "Sistema completo para gestión de asistencia técnica informática con CRUD de servicios, órdenes de trabajo, control financiero, tickets/llamadas de soporte y generación automática de PDFs. Desarrollado con Node.js, React, SQLite y Firebase.",
         "project2": "Sistema financiero completo con dashboard interactivo, control de ingresos/gastos, categorización automática, informes detallados y autenticación segura. Desarrollado con TypeScript, React, Node.js y PostgreSQL.",
         "project3": "Pokedex interactiva y responsiva consumiendo PokeAPI para mostrar información detallada de Pokémon. Incluye sistema de búsqueda avanzada, filtros por tipo, generación y estadísticas, con diseño moderno inspirado en el anime.",
-        "project4": "Aplicación de citas moderna con sistema de matches inteligente, chat en tiempo real, perfiles personalizados y sistema de geolocalización. Desarrollada con enfoque en la experiencia del usuario e interfaz intuitiva.",
         "contactForm": {
             "name": "Nombre:",
             "email": "Correo Electrónico:",
@@ -193,11 +190,10 @@ function changeLanguage() {
 
     // Atualiza projetos
     const projectDescriptions = document.querySelectorAll('.project-item p');
-    if (projectDescriptions.length >= 4) {
+    if (projectDescriptions.length >= 3) {
         projectDescriptions[0].textContent = langData.project1;
         projectDescriptions[1].textContent = langData.project2;
         projectDescriptions[2].textContent = langData.project3;
-        projectDescriptions[3].textContent = langData.project4;
     }
 
     // Atualiza botões de navegação
